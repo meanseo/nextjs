@@ -4,41 +4,45 @@ export default function Calc(){
     const [opcode, setOpcode] = useState("")
     const [num2, setNum2] = useState(0)
     const [result, setResult] = useState(0)
-    const sum = () => {
-        return setResult(Number(num1) + Number(num2))
+
+    const calc =(num1,opcode,num2)=> {
+        switch(opcode){
+            case '+': return Number(num1) + Number(num2)   
+            case '-': return Number(num1) - Number(num2)   
+            case '*': return Number(num1) * Number(num2)   
+            case '/': return Number(num1) / Number(num2)   
+            case '%': return Number(num1) % Number(num2)   
+        }            
     }
-    const sub = () => {
-        return setResult(Number(num1) - Number(num2))
+    const res =()=>{
+        let num1 = (document.getElementById('num1')).value
+        let opcode = (document.getElementById('opcode')).value  
+        let num2 = (document.getElementById('num2')).value 
+        setNum1(num1)
+        setOpcode(opcode)
+        setNum2(num2)
+        setResult(calc(num1,opcode,num2))
     }
-    const mul = () => {
-        return setResult(Number(num1) * Number(num2))
-    }
-    const div = () => {
-        return setResult(Number(num1) / Number(num2))
-    }
-    return <>
-    <h1>계산기</h1>
-    <div>
-    <label><b>num1</b></label>
-    <input id="num1" type="" /><br/>
-    <label htmlFor=""><b>opcode</b></label>
-    <select name="" id="">
-        <option value="">+</option>
-        <option value="">-</option>
-        <option value="">*</option>
-        <option value="">/</option>
-        <option value="">%</option>
-    </select>
-    <br/>
-    <label htmlFor=""><b>num2</b></label>
-    <input id="num2" tpye=""/><br/>
-    <button onClick={() => {setNum1(document.getElementById('num1').value)}}>num1 결정</button>
-    <button onClick={() => {setNum2(document.getElementById('num2').value)}}>num2 결정</button><br/>
-    <button onClick={() => {sum()}}>덧셈 실행</button>
-    <button onClick={() => {sub()}}>뺄셈 실행</button><br/>
-    <button onClick={() => {mul()}}>곱셈 실행</button>
-    <button onClick={() => {div()}}>나눗셈 실행</button>
-    <div>계산 결과: {result}</div>
+    return (
+        <><>계산기</>
+        <div>
+            <label><b>number1</b></label>
+            <input id="num1"/><br/>
+            <label><b>opcode</b></label>
+            <select name="" id="opcode">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+            </select>
+            <br/>
+            <label><b>number2</b></label>
+            <input id="num2"/><br/>
+            <button onClick={()=>{res()}}>실행</button>
+            <div> {num1} {opcode} {num2} = {result}</div>
     </div>
-    </>
+        
+        </>
+    )
 }
