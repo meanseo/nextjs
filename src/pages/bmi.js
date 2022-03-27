@@ -1,41 +1,34 @@
 import React, { useState } from "react";
+import Layout from "../containers/Layout";
+export default function Bmi (){
 
-export default function Bmi(){
-
-    const [inputs, setInputs] = useState({})
-    const [result, setResult] = useState('')
-    const { name, weight, height } = inputs; // Object Destructuring
-
-
-    const handleChange = (e) => {
-        e.preventDefault()
-        const {value, name} = e.target;
-        setInputs({...inputs, [name]: value})
+    const [username, setUserName] = useState("")
+    const [height, setHeight] = useState(0.0)
+    const [weight, setWeight] = useState(0.0)
+    const res = () =>{
+        let username = document.getElementById('username').value 
+        let height = document.getElementById('height').value
+        let weight = document.getElementById('weight').value
+        setUserName(username)
+        setHeight(height)
+        setWeight(weight)
     }
+
+
+    return(<Layout>
+    <h1>Bmi</h1>
     
-    const handleClick = (e) => {
-        e.preventDefault()
-        memberBmi({name, height, weight}).then( res => setResult(res.data)).catch( err => console.log(`에러발생 : ${err}`))
-    }
-
-    return(<>
-        <form>
-        <h1>BMI</h1>
-
         <div>
-        <label><b>name</b></label>
-        <input type="text" name ="name" onChange={handleChange} /><br/>
-
-        <label htmlFor=""><b>Height</b></label>
-        <input type="text" name="height" onChange={handleChange} /><br/>
-
-        <label htmlFor=""><b>Weight</b></label>
-        <input type="text" name="weight" onChange={handleChange} /><br/>
-            <button onClick={handleClick}>BMI 체크</button>
+        <label><b>Username</b></label>
+        <input id="username" /><br/>
+        <label><b>Height</b></label>
+        <input id="height" /><br/>
+        <label><b>Weight</b></label>
+        <input id="weight"/><br/>
+        <button onClick={()=>{res()}}>execute</button>
+        <div>결과 : {username} {height} {weight}</div>
         </div>
-        </form>
-        <div>{result}</div>
-        </>
 
+    </Layout>
     )
 }
