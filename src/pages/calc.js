@@ -24,12 +24,13 @@ export default function Calc(){
         setResult(calc(num1,opcode,num2))
     }
     return (
-        <><>계산기</>
+        <>
+        <h1>계산기</h1>
         <div>
             <label><b>number1</b></label>
             <input id="num1"/><br/>
             <label><b>opcode</b></label>
-            <select name="" id="opcode">
+            <select id="opcode">
                 <option value="+">+</option>
                 <option value="-">-</option>
                 <option value="*">*</option>
